@@ -1,0 +1,56 @@
+MDScreen:
+
+    MDBoxLayout:
+        orientation: 'vertical'
+
+        MDToolbar:
+            title: 'Youtube Video Downloader'
+            pos_hint: {'top': 1}
+        
+        MDBoxLayout:
+
+            ScrollView:
+                
+                MDBoxLayout:
+                    orientation: 'vertical'
+                    spacing: '10dp'
+                    padding: '20dp'
+                    adaptive_height: True
+
+                    MDLabel:
+                        text: "Youtube"
+                        halign: 'center'
+                        valign: 'center'
+                        adaptive_height: True
+                    
+                    AsyncImage:
+                        source: ''
+                        id: thumbnail
+                        size_hint_y: None
+                        height: "180dp"
+
+                    MDLabel:
+                        text: 'Title'
+                        id: title
+                        font_size: 10
+                    
+                    MDTextField:
+                        id: url
+                        hint_text: "Youtube URL"
+                        multiline: True
+                    
+                    MDRaisedButton: 
+                        text: "Get Details"
+                        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                        on_press: app.get_details()
+                    
+                    MDDropDownItem:
+                        id: drop_down
+                        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                        text: 'Select Video Quality'
+                        on_release: app.callback(self)
+                    
+                    MDRaisedButton:
+                        text: 'Download Video'
+                        pos_hint: {'center_x': 0.5}
+                        on_press: app.download_video()
