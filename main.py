@@ -6,11 +6,8 @@ import asynckivy as ak
 from pytube import YouTube
 
 
-from kivymd.uix.menu import MDDropdownMenu
-
 
 class YoutubeDownloaderApp(MDApp):
-
     res_items = []
     yt = None
 
@@ -42,12 +39,16 @@ class YoutubeDownloaderApp(MDApp):
         img_url = self.root.ids.thumbnail
 
         async def some_task():
-            self.yt = await ak.run_in_thread(lambda: YouTube(url_text.text))
-            title.text = await ak.run_in_thread(lambda: f"Title: {self.yt.title}")
-            img_url.source = await ak.run_in_thread(lambda: self.yt.thumbnail_url)
-            self.res_items = await ak.run_in_thread(lambda: [
-                i.resolution for i in self.yt.streams.filter(progressive=True)])
-            await ak.run_in_thread(lambda: self.build())
+            try:
+                self.yt = await ak.run_in_thread(lambda: YouTube(url_text.text))
+                title.text = await ak.run_in_thread(lambda: f"Title: {self.yt.title}")
+                img_url.source = await ak.run_in_thread(lambda: self.yt.thumbnail_url)
+                self.res_items = await ak.run_in_thread(lambda: [
+                    i.resolution for i in self.yt.streams.filter(progressive=True)])
+                await ak.run_in_thread(lambda: self.build())
+
+            except Exception as e:
+                print(str(e))
 
         ak.start(some_task())
 
@@ -66,11 +67,11 @@ class YoutubeDownloaderApp(MDApp):
             print(stream)
             await ak.run_in_thread(lambda: stream.download())
             print('done')
+
         ak.start(some_task())
 
 
 if __name__ == "__main__":
     YoutubeDownloaderApp().run()
-
 
 # https://youtu.be/A8ldqcFS5S8
