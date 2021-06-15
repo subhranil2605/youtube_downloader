@@ -1,38 +1,49 @@
 <Options>:
     name: 'download_options'
 
-    MDBoxLayout:
-        orientation: 'vertical'
-
-        MDToolbar:
-            title: 'Download Options'
+    MDFloatLayout:
 
         MDBoxLayout:
             orientation: 'vertical'
 
+            MDToolbar:
+                title: 'Download Options'
+
             MDBoxLayout:
-                adaptive_height: True
-                padding: 10
-                spacing: 10
+                orientation: 'vertical'
 
-                AsyncImage:
-                    id: image
-                    size_hint: 0.4, None
-                    height: 60
+                MDBoxLayout:
+                    adaptive_height: True
+                    padding: 10
+                    spacing: 10
 
-                MDTextField:
-                    multiline: True
-                    id: title
+                    AsyncImage:
+                        id: image
+                        size_hint: 0.4, None
+                        height: 60
 
-            # Download options
-            MDBoxLayout:
+                    MDTextField:
+                        multiline: True
+                        id: title
 
-                ScrollView:
+                # Download options
+                MDBoxLayout:
 
-                    MDBoxLayout:
-                        id: option_layout
-                        adaptive_height: True
-                        orientation: 'vertical'
+                    ScrollView:
+
+                        MDBoxLayout:
+                            id: option_layout
+                            adaptive_height: True
+                            orientation: 'vertical'
+                            padding: 10
+                            spacing: 10
+
+            
+        # Floating action button
+        MDFloatingActionButton:
+            icon: 'arrow-down'
+            pos_hint: {'center_x': 0.95, 'center_y': 0.05}
+            on_release: root.parent.download(title.text)
 
 
 

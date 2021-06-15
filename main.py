@@ -1,38 +1,3 @@
-# from kivymd.app import MDApp
-# from kivy.lang.builder import Builder
-# from kivy.core.window import Window
-# import asynckivy as ak
-# from pytube import YouTube
-#
-#
-# class YoutubeDownloaderApp(MDApp):
-#     res_items = []
-#     yt = None
-#
-#     def build(self):
-#         Window.size = [320, 600]
-#         return Builder.load_file('yt_downloader.kv')
-#
-#
-
-#
-#
-#     def download_video(self):
-#         url_text = self.root.ids.url
-#
-#         async def some_task():
-#             # yt = await ak.run_in_thread(lambda: YouTube(url_text.text))
-#             stream = await ak.run_in_thread(lambda: self.yt.streams.filter(
-#                 progressive=True).get_by_resolution(f"{res}"))
-#             await ak.run_in_thread(lambda: stream.download())
-#             print('done')
-#
-#         ak.start(some_task())
-#
-#
-# if __name__ == "__main__":
-#     YoutubeDownloaderApp().run()
-#
 # # https://youtu.be/A8ldqcFS5S8
 
 

@@ -1,19 +1,30 @@
 <OptionListItem>:
     adaptive_height: True
+    orientation: 'vertical'
 
-    Check:
-        
-    MDLabel:
-        text: root.quality
-        bold: True
 
-    MDLabel:
-        text: root.extension
-        bold: True
+    MDBoxLayout:
+        adaptive_height: True
 
-    MDLabel:
-        text: root.file_size
-        bold: True
+        Check:
+            on_active: 
+                root.parent.parent.parent.parent.parent.parent.parent.parent.itag = root.itag
+                root.parent.parent.parent.parent.parent.parent.parent.parent.res = res.text
+
+        MDLabel:
+            id: res
+            text: root.quality
+            bold: True
+
+        MDLabel:
+            text: root.extension
+            bold: True
+
+        MDLabel:
+            text: root.file_size
+            bold: True
+
+    MDSeparator:
 
 
 <Check@MDCheckbox>:
