@@ -1,6 +1,3 @@
-# # https://youtu.be/A8ldqcFS5S8
-
-
 from kivymd.app import MDApp
 from kivy.lang.builder import Builder
 

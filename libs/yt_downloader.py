@@ -1,12 +1,15 @@
 from kivy.uix.screenmanager import ScreenManager
 from kivymd.uix.label import MDLabel
+from kivymd.toast import toast
 import asynckivy as ak
 from pytube import YouTube
+
 
 from components.qual_options import OptionListItem
 
 
-def byte_to_mb(b): return b / 10**6
+def byte_to_mb(b):
+    return round(b / 10**6)
 
 
 class ScreenManaging(ScreenManager):
@@ -18,6 +21,8 @@ class ScreenManaging(ScreenManager):
     title = ''
     itag = 0
     res = ''
+    previous_progress = 0
+    liveprogress = 0
 
     def get_details(self, url):
         async def some_task():
@@ -25,6 +30,7 @@ class ScreenManaging(ScreenManager):
             try:
                 self.current = 'loading'
                 self.yt = await ak.run_in_thread(lambda: YouTube(url))
+                self.yt.register_on_progress_callback(self.progress_func)
                 self.title = await ak.run_in_thread(lambda: f"Title: {self.yt.title}")
                 self.thm_url = await ak.run_in_thread(lambda: self.yt.thumbnail_url)
 
@@ -149,23 +155,39 @@ class ScreenManaging(ScreenManager):
         print(self.itag)
         print(self.res)
         print(title)
-
-        # if self.res[-1] == 's':
-        #     # audio file
-        #     print()
-        # else:
-        #     # video file
-        #     print()
+        self.previous_progress = 0
+        current_screen = self.current
 
         async def some_task():
+
             stream = await ak.run_in_thread(lambda: self.yt.streams.get_by_itag(self.itag))
+            self.file_size = stream.filesize
             print('Starting...')
             await ak.run_in_thread(lambda: stream.download(
                 'output',
-                filename=title + '_' + self.res
+                filename=title + '_' + self.res,
+                skip_existing=False
             ))
             print("done")
+            self.show_toast('Downloaded!')
         ak.start(some_task())
 
     def change_screen(self, scrn):
         self.current = scrn
+
+    def show_toast(self, message):
+        toast(message)
+
+    def progress_func(self, stream, chunk, bytes_remaining):
+        size = stream.filesize
+        bytes_downloaded = size - bytes_remaining
+
+        self.liveprogress = (int)(bytes_downloaded/size * 100)
+
+        if self.liveprogress > self.previous_progress:
+            self.previous_progress = self.liveprogress
+            print(self.liveprogress)
+
+    # def percent(self, tem, total):
+    #     perc = (float(tem) / float(total)) * float(100)
+    #     return perc

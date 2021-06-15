@@ -1,5 +1,19 @@
 <Downloading@MDScreen>:
     name: 'downloading'
 
-    MDLabel:
-        text: 'downloading'
+    MDBoxLayout:
+        orientation: 'vertical'
+
+        MDToolbar:
+            title: 'Downloads'
+        
+
+        ScrollView:
+
+            MDBoxLayout:
+                adaptive_height: True
+                orientation: 'vertical'
+                id: download_list
+                padding: 10
+                spacing: 10
+                
