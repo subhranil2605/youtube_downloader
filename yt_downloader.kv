@@ -17,6 +17,22 @@ MDScreen:
                     padding: '20dp'
                     adaptive_height: True
 
+                    MDTextField:
+                        id: url
+                        hint_text: "Youtube URL"
+                        multiline: True
+
+                    MDRaisedButton:
+                        text: "Get Details"
+                        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                        on_press: app.get_details()
+
+
+                    MDRaisedButton:
+                        text: 'Download Video'
+                        pos_hint: {'center_x': 0.5}
+                        on_press: app.download_video()
+
                     MDLabel:
                         text: "Youtube"
                         halign: 'center'
@@ -34,23 +50,3 @@ MDScreen:
                         id: title
                         font_size: 10
                     
-                    MDTextField:
-                        id: url
-                        hint_text: "Youtube URL"
-                        multiline: True
-                    
-                    MDRaisedButton: 
-                        text: "Get Details"
-                        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-                        on_press: app.get_details()
-                    
-                    MDDropDownItem:
-                        id: drop_down
-                        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-                        text: 'Select Video Quality'
-                        on_release: app.callback(self)
-                    
-                    MDRaisedButton:
-                        text: 'Download Video'
-                        pos_hint: {'center_x': 0.5}
-                        on_press: app.download_video()

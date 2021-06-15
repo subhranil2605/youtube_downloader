@@ -1,0 +1,38 @@
+<Options>:
+    name: 'download_options'
+
+    MDBoxLayout:
+        orientation: 'vertical'
+
+        MDToolbar:
+            title: 'Download Options'
+
+        MDBoxLayout:
+            orientation: 'vertical'
+
+            MDBoxLayout:
+                adaptive_height: True
+                padding: 10
+                spacing: 10
+
+                AsyncImage:
+                    id: image
+                    size_hint: 0.4, None
+                    height: 60
+
+                MDTextField:
+                    multiline: True
+                    id: title
+
+            # Download options
+            MDBoxLayout:
+
+                ScrollView:
+
+                    MDBoxLayout:
+                        id: option_layout
+                        adaptive_height: True
+                        orientation: 'vertical'
+
+
+

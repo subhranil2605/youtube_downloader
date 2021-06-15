@@ -1,0 +1,26 @@
+<Link@MDScreen>:
+    name: 'link'
+
+    MDBoxLayout:
+        orientation: 'vertical'
+        padding: 10
+
+        MDLabel:
+            adaptive_height: True
+            text: 'Type the link here:'
+            halign: 'center'
+            valign: 'center'
+            pos_hint: {'center_x': 0.5, 'center_y': 0.6}
+
+        MDTextField:
+            id: url
+            pos_hint: {'center_x': 0.5, 'center_y': 0.8}
+            multiline: True
+            text: 'https://youtu.be/A8ldqcFS5S8'
+
+        MDRaisedButton:
+            text: 'Get Details'
+            on_release: root.parent.get_details(url.text)
+            pos_hint: {'center_x': 0.5}
+
+        Widget:

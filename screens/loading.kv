@@ -1,0 +1,12 @@
+#:import AKSpinnerFoldingCube kivymd_extensions.akivymd.uix.spinners.AKSpinnerFoldingCube
+
+<Loading@MDScreen>:
+    name: 'loading'
+    id: loading
+
+    AKSpinnerFoldingCube:
+        id: foldingcube
+        spinner_size: dp(40)
+        pos_hint: {"center_x": .5, "center_y": .4}
+        angle: 45
+        active: True

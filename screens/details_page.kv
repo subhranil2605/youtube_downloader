@@ -1,0 +1,32 @@
+<Details@MDScreen>:
+    name: 'details'
+
+    MDBoxLayout:
+        orientation: 'vertical'
+
+
+        MDToolbar:
+            title: 'Details'
+            left_action_items: [['arrow-left', lambda x: root.parent.change_screen('link')]]
+
+        MDBoxLayout:
+            orientation: 'vertical'
+            padding: 10
+            spacing: 10
+
+            AsyncImage:
+                id: thumbnail
+                size_hint_y: 0.5
+                mipmap: True
+
+            MDLabel:
+                adaptive_height: True
+                id: title
+                halign: 'center'
+
+            MDRaisedButton:
+                text: 'Download Video'
+                pos_hint: {'center_x': 0.5}
+                on_release: root.parent.get_download_options()
+
+            Widget:
